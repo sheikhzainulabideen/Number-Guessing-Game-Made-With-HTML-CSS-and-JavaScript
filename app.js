@@ -3,38 +3,31 @@ var targetNumber = 0;
 var attempts = 0;
 var minVal = 1;
 var maxVal = 10;
-
 var minNumInput = document.getElementById("min-num");
 var maxNumInput = document.getElementById("max-num");
 var startBtn = document.getElementById("start-btn");
-
 var gameplaySection = document.getElementById("gameplay-section");
 var displayMin = document.getElementById("display-min");
 var displayMax = document.getElementById("display-max");
 var attemptsCount = document.getElementById("attempts-count");
 var userGuessInput = document.getElementById("user-guess");
 var guessBtn = document.getElementById("guess-btn");
-
 var modalOverlay = document.getElementById("modal-overlay");
 var modalCard = document.getElementById("modal-card");
 var modalTitle = document.getElementById("modal-title");
 var modalMessage = document.getElementById("modal-message");
 var modalCloseBtn = document.getElementById("modal-close-btn");
-
 function startGame() {
   var parsedMin = parseInt(minNumInput.value, 10);
   var parsedMax = parseInt(maxNumInput.value, 10);
-
   if (isNaN(parsedMin) || isNaN(parsedMax)) {
     alert("Please enter valid numbers for the range.");
     return;
   }
-
   if (parsedMin >= parsedMax) {
     alert("Min number must be less than Max number.");
     return;
   }
-
   minVal = parsedMin;
   maxVal = parsedMax;
   attempts = 0;
@@ -64,19 +57,15 @@ function handleGuess() {
     alert(`Please enter a number between ${minVal} and ${maxVal}.`);
     return;
   }
-
   attempts++;
   attemptsCount.textContent = attempts;
-
   if (guess === targetNumber) {
-    // Requirement 4: Correct Guess Pop-up
     showPopup(
       true,
       "Congratulations!",
       `Congratulations User You Have Guess The Number Correctly in ${attempts} attempts.`
     );
   } else if (guess > targetNumber) {
-
     showPopup(
       false,
       "Incorrect Guess",
@@ -93,16 +82,12 @@ function handleGuess() {
   userGuessInput.value = "";
 }
 
-
 function showPopup(isSuccess, title, message) {
   modalTitle.textContent = title;
   modalMessage.textContent = message;
-
   modalCard.className = "modal-card " + (isSuccess ? "success" : "incorrect");
   modalOverlay.classList.remove("hidden");
 }
-
-// Close Modal Popup
 function closeModal() {
   modalOverlay.classList.add("hidden");
   userGuessInput.focus();
