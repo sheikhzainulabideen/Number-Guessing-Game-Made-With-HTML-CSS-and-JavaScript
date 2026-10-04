@@ -1,10 +1,9 @@
-// Game State Variables
+
 var targetNumber = 0;
 var attempts = 0;
 var minVal = 1;
 var maxVal = 10;
 
-// DOM Elements
 var minNumInput = document.getElementById("min-num");
 var maxNumInput = document.getElementById("max-num");
 var startBtn = document.getElementById("start-btn");
@@ -22,7 +21,6 @@ var modalTitle = document.getElementById("modal-title");
 var modalMessage = document.getElementById("modal-message");
 var modalCloseBtn = document.getElementById("modal-close-btn");
 
-// Start / Reset Game
 function startGame() {
   var parsedMin = parseInt(minNumInput.value, 10);
   var parsedMax = parseInt(maxNumInput.value, 10);
@@ -41,7 +39,6 @@ function startGame() {
   maxVal = parsedMax;
   attempts = 0;
 
-  // Generate secret target number within range [minVal, maxVal]
   targetNumber = Math.floor(Math.random() * (maxVal - minVal + 1)) + minVal;
 
   // Update UI Elements
@@ -54,7 +51,7 @@ function startGame() {
   userGuessInput.focus();
 }
 
-// Handle Guess Submission
+
 function handleGuess() {
   var guess = parseInt(userGuessInput.value, 10);
 
@@ -68,7 +65,6 @@ function handleGuess() {
     return;
   }
 
-  // Increment attempts counter
   attempts++;
   attemptsCount.textContent = attempts;
 
@@ -80,14 +76,13 @@ function handleGuess() {
       `Congratulations User You Have Guess The Number Correctly in ${attempts} attempts.`
     );
   } else if (guess > targetNumber) {
-    // Requirement 5: Incorrect Guess Pop-up (Greater)
+
     showPopup(
       false,
       "Incorrect Guess",
       `Better Luck Next Time User. Attempts: ${attempts}. Your guessed number (${guess}) is Greater than the number that needs to be guessed.`
     );
   } else {
-    // Requirement 5: Incorrect Guess Pop-up (Less)
     showPopup(
       false,
       "Incorrect Guess",
@@ -98,7 +93,7 @@ function handleGuess() {
   userGuessInput.value = "";
 }
 
-// Show Modal Popup
+
 function showPopup(isSuccess, title, message) {
   modalTitle.textContent = title;
   modalMessage.textContent = message;
@@ -113,12 +108,10 @@ function closeModal() {
   userGuessInput.focus();
 }
 
-// Event Listeners
 startBtn.addEventListener("click", startGame);
 guessBtn.addEventListener("click", handleGuess);
 modalCloseBtn.addEventListener("click", closeModal);
 
-// Allow pressing "Enter" key inside inputs
 userGuessInput.addEventListener("keypress", (e) => {
   if (e.key === "Enter") {
     handleGuess();
