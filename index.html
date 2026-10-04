@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Number Guessing Game</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="game-card">
+    <header class="game-header">
+      <h1>Number Guessing Game</h1>
+      <p>Configure your range, start the game, and guess the secret number!</p>
+    </header>
+
+    <!-- Range Configuration Section -->
+    <section class="range-section">
+      <div class="range-inputs">
+        <div class="input-group">
+          <label for="min-num">Min Number</label>
+          <input type="number" id="min-num" value="1">
+        </div>
+        <div class="input-group">
+          <label for="max-num">Max Number</label>
+          <input type="number" id="max-num" value="10">
+        </div>
+      </div>
+      <button id="start-btn" class="btn primary-btn">Start New Game</button>
+    </section>
+
+    <!-- Gameplay Section -->
+    <section id="gameplay-section" class="gameplay-section hidden">
+      <div class="game-info">
+        <p class="range-badge">Guess between <span id="display-min">1</span> and <span id="display-max">10</span></p>
+        <div class="attempts-tracker">
+          Attempts: <span id="attempts-count">0</span>
+        </div>
+      </div>
+
+      <div class="guess-form">
+        <input type="number" id="user-guess" placeholder="Enter your guess" autocomplete="off">
+        <button id="guess-btn" class="btn action-btn">Submit Guess</button>
+      </div>
+    </section>
+  </div>
+
+  <!-- Result Modal Popup -->
+  <div id="modal-overlay" class="modal-overlay hidden">
+    <div id="modal-card" class="modal-card">
+      <h2 id="modal-title">Title</h2>
+      <p id="modal-message">Message details go here...</p>
+      <button id="modal-close-btn" class="btn primary-btn">Continue</button>
+    </div>
+  </div>
+
+
+</body>
+  <script src="app.js"></script>
+</html>
